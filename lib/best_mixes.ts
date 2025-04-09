@@ -1,6 +1,7 @@
-import { BestMix } from "./types";
+import { BestMix, Effect } from "./types";
 
-export const bestMixes: BestMix[] = [
+// Primeiro, definimos os dados originais
+const bestMixesData = [
   // OG Kush
   {
     seed: "OG Kush",
@@ -636,3 +637,86 @@ export const bestMixes: BestMix[] = [
     category: "profitable",
   },
 ];
+
+// Depois convertemos para enums
+const convertedMixes: BestMix[] = bestMixesData.map((mix) => ({
+  ...mix,
+  effects: mix.effects.map((effect) => {
+    // Converter os efeitos de string para Effect enum
+    switch (effect) {
+      case "Anti-Gravity":
+        return Effect.ANTI_GRAVITY;
+      case "Athletic":
+        return Effect.ATHLETIC;
+      case "Balding":
+        return Effect.BALDING;
+      case "Bright-Eyed":
+        return Effect.BRIGHT_EYED;
+      case "Calming":
+        return Effect.CALMING;
+      case "Calorie-Dense":
+        return Effect.CALORIE_DENSE;
+      case "Cyclopean":
+        return Effect.CYCLOPEAN;
+      case "Disorienting":
+        return Effect.DISORIENTING;
+      case "Electrifying":
+        return Effect.ELECTRIFYING;
+      case "Energizing":
+        return Effect.ENERGIZING;
+      case "Euphoric":
+        return Effect.EUPHORIC;
+      case "Explosive":
+        return Effect.EXPLOSIVE;
+      case "Focused":
+        return Effect.FOCUSED;
+      case "Foggy":
+        return Effect.FOGGY;
+      case "Gingeritis":
+        return Effect.GINGERITIS;
+      case "Glowing":
+        return Effect.GLOWING;
+      case "Jennerising":
+        return Effect.JENNERISING;
+      case "Laxative":
+        return Effect.LAXATIVE;
+      case "Long Faced":
+        return Effect.LONG_FACED;
+      case "Munchies":
+        return Effect.MUNCHIES;
+      case "Paranoia":
+        return Effect.PARANOIA;
+      case "Refreshing":
+        return Effect.REFRESHING;
+      case "Schizophrenia":
+        return Effect.SCHIZOPHRENIA;
+      case "Sedating":
+        return Effect.SEDATING;
+      case "Seizure-Inducing":
+        return Effect.SEIZURE_INDUCING;
+      case "Shrinking":
+        return Effect.SHRINKING;
+      case "Slippery":
+        return Effect.SLIPPERY;
+      case "Smelly":
+        return Effect.SMELLY;
+      case "Sneaky":
+        return Effect.SNEAKY;
+      case "Spicy":
+        return Effect.SPICY;
+      case "Thought-Provoking":
+        return Effect.THOUGHT_PROVOKING;
+      case "Toxic":
+        return Effect.TOXIC;
+      case "Tropic Thunder":
+        return Effect.TROPIC_THUNDER;
+      case "Zombifying":
+        return Effect.ZOMBIFYING;
+      default:
+        return effect as unknown as Effect;
+    }
+  }),
+}));
+
+// Finalmente exportamos
+export const bestMixes = convertedMixes;
