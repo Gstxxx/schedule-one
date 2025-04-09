@@ -1,5 +1,5 @@
-# Schedule 1 calculator
+# Calculadora Schedule 1
 
-made for game schedule 1, calculate how much you will spend on mixes
+Desenvolvida para o jogo Schedule 1, esta ferramenta calcula quanto você gastará em misturas.
 
-(Preview)[image.png]
+![Prévia](image.png)
