@@ -28,30 +28,67 @@ interface BestMix {
   category?: string;
 }
 
+const effectColors: Record<string, string> = {
+  "Anti-Gravity": "text-blue-400",
+  "Athletic": "text-cyan-400",
+  "Balding": "text-amber-400",
+  "Bright-Eyed": "text-blue-100",
+  "Calming": "text-amber-300",
+  "Calorie-Dense": "text-pink-400",
+  "Cyclopean": "text-yellow-500",
+  "Disorienting": "text-red-400",
+  "Electrifying": "text-cyan-400",
+  "Energizing": "text-green-400",
+  "Euphoric": "text-yellow-400",
+  "Explosive": "text-red-500",
+  "Focused": "text-teal-400",
+  "Foggy": "text-gray-400",
+  "Gingeritis": "text-orange-500",
+  "Glowing": "text-green-400",
+  "Jennerising": "text-purple-400",
+  "Laxative": "text-red-400",
+  "Long Faced": "text-yellow-500",
+  "Munchies": "text-orange-400",
+  "Paranoia": "text-red-400",
+  "Refreshing": "text-green-500",
+  "Schizophrenia": "text-purple-400",
+  "Sedating": "text-purple-500",
+  "Seizure-Inducing": "text-yellow-400",
+  "Shrinking": "text-gray-300",
+  "Slippery": "text-cyan-400",
+  "Smelly": "text-yellow-400",
+  "Sneaky": "text-gray-400",
+  "Spicy": "text-red-500",
+  "Thought-Provoking": "text-purple-600",
+  "Toxic": "text-green-600",
+  "Tropic Thunder": "text-amber-500",
+  "Zombifying": "text-green-600"
+};
+
 const ingredients: Ingredient[] = [
-  { name: "Cuke", price: 2, image: "https://static.wikia.nocookie.net/schedule-1/images/a/ae/Cuke_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212111" },
-  { name: "Banana", price: 2, image: "https://static.wikia.nocookie.net/schedule-1/images/3/31/Banana_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212129" },
-  { name: "Paracetamol", price: 3, image: "https://static.wikia.nocookie.net/schedule-1/images/2/23/Paracetamol_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212147" },
-  { name: "Donut", price: 3, image: "https://static.wikia.nocookie.net/schedule-1/images/0/05/Donut_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212203" },
-  { name: "Viagra", price: 4, image: "https://static.wikia.nocookie.net/schedule-1/images/3/f0/Viagra_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212215" },
-  { name: "Mouth Wash", price: 4, image: "https://static.wikia.nocookie.net/schedule-1/images/7/7e/Mouth_Wash_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212225" },
-  { name: "Flu Medicine", price: 5, image: "https://static.wikia.nocookie.net/schedule-1/images/8/8b/Flu_Medicine_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212235" },
-  { name: "Gasoline", price: 5, image: "https://static.wikia.nocookie.net/schedule-1/images/9/9e/Gasoline_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212245" },
-  { name: "Energy Drink", price: 6, image: "https://static.wikia.nocookie.net/schedule-1/images/a/a0/Energy_Drink_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212255" },
-  { name: "Motor Oil", price: 6, image: "https://static.wikia.nocookie.net/schedule-1/images/b/bc/Motor_Oil_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212305" },
-  { name: "Mega Bean", price: 7, image: "https://static.wikia.nocookie.net/schedule-1/images/c/c1/Mega_Bean_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212315" },
-  { name: "Chili", price: 7, image: "https://static.wikia.nocookie.net/schedule-1/images/8/8b/Chili_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212531" },
-  { name: "Battery", price: 8, image: "https://static.wikia.nocookie.net/schedule-1/images/4/40/Battery_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212545" },
-  { name: "Iodine", price: 9, image: "https://static.wikia.nocookie.net/schedule-1/images/c/c0/Iodine_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212603" },
-  { name: "Addy", price: 9, image: "https://static.wikia.nocookie.net/schedule-1/images/d/d8/Addy_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212619" },
-  { name: "Horse Semen", price: 9, image: "https://static.wikia.nocookie.net/schedule-1/images/6/6f/Horse_Semen_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406212633" },
+  { name: "Cuke", price: 2, image: "/Cuke_Icon.png" },
+  { name: "Banana", price: 2, image: "/Banana_Icon.png" },
+  { name: "Paracetamol", price: 3, image: "/Paracetamol_Icon.png" },
+  { name: "Donut", price: 3, image: "/Donut_Icon.png" },
+  { name: "Viagra", price: 4, image: "/Viagra_Icon.png" },
+  { name: "Mouth Wash", price: 4, image: "/Mouth_Wash_Icon.png" },
+  { name: "Flu Medicine", price: 5, image: "/Meth_Icon.png" },
+  { name: "Gasoline", price: 5, image: "/Gasoline_Icon.png" },
+  { name: "Energy Drink", price: 6, image: "/Energy_Drink_Icon.png" },
+  { name: "Motor Oil", price: 6, image: "/Motor_Oil_Icon.png" },
+  { name: "Mega Bean", price: 7, image: "/Mega_Bean_Icon.png" },
+  { name: "Chili", price: 7, image: "/Chili_Icon.png" },
+  { name: "Battery", price: 8, image: "/Battery_Icon.png" },
+  { name: "Iodine", price: 9, image: "/Iodine_Icon.png" },
+  { name: "Addy", price: 9, image: "/Addy_Icon.png" },
+  { name: "Horse Semen", price: 9, image: "/Horse_Semen_Icon.png" },
 ];
 
 const seeds: Seed[] = [
-  { name: "OG Kush", basePrice: 38, image: "https://static.wikia.nocookie.net/schedule-1/images/d/dc/OGKushSeed_Icon.png/revision/latest/scale-to-width-down/180?cb=20250406204858/show" },
-  { name: "Sour Diesel", basePrice: 40, image: "https://img.game8.co/3727219/b2e5eab11f5bd1de9fb49c7b31aa41c3.png/show" },
-  { name: "Green Crack", basePrice: 43, image: "https://img.game8.co/3727223/ebb0e45efd82c3b39b1b3e7a23f57c2f.png/show" },
-  { name: "Granddaddy Purple", basePrice: 44, image: "https://img.game8.co/3727221/b12a2b6bb35fd38a069dffddb8c4b60e.png/show" },
+  { name: "OG Kush", basePrice: 38, image: "/OGKushSeed_Icon.png" },
+  { name: "Sour Diesel", basePrice: 40, image: "/SourDieselSeed_Icon.png" },
+  { name: "Green Crack", basePrice: 43, image: "/GreenCrackSeed_Icon.png" },
+  { name: "Granddaddy Purple", basePrice: 44, image: "/GranddaddyPurpleSeed_Icon.png" },
 ];
 
 const bestMixes: BestMix[] = [
@@ -578,7 +615,7 @@ export default function Home() {
                         {mix.effects.map((effect, i) => (
                           <span
                             key={i}
-                            className="px-2 py-1 bg-secondary text-secondary-foreground rounded-md text-sm"
+                            className={`px-2 py-1 bg-gray-800 rounded-md text-sm ${effectColors[effect] || "text-gray-200"}`}
                           >
                             {effect}
                           </span>
