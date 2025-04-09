@@ -1,33 +1,26 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { bestMixes } from "@/lib/best_mixes";
-import { ChevronLeft, BookOpen, Filter } from "lucide-react";
-import { effectColors, Effect, BestMix } from "@/lib/types";
-import { ingredients } from "@/lib/ingredients";
 import { BeakerIcon, ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import { bestMixes } from "@/lib/best_mixes";
+import { effectColors } from "@/lib/types";
+import { ingredients } from "@/lib/ingredients";
 
 export default function RecipesPage() {
     const [activeCategory, setActiveCategory] = useState<string>("all");
 
-    const getFilteredMixes = (): BestMix[] => {
-        if (activeCategory === "all") {
-            return bestMixes;
-        } else if (activeCategory === "og-kush" || activeCategory === "sour-diesel" ||
-            activeCategory === "green-crack" || activeCategory === "granddaddy-purple" ||
-            activeCategory === "meth" || activeCategory === "cocaine") {
-            return bestMixes.filter(mix => mix.category === activeCategory);
-        } else if (activeCategory === "profitable") {
-            return bestMixes.filter(mix => mix.category === "profitable");
+    const filteredMixes = bestMixes.filter(mix => {
+        if (activeCategory === "all") return true;
+        if (activeCategory === "profitable") {
+            const profitableThreshold = 1000;
+            return mix.sellPrice >= profitableThreshold;
         }
-        return bestMixes;
-    };
-
-    const filteredMixes: BestMix[] = getFilteredMixes();
+        return mix.seed.toLowerCase().includes(activeCategory.toLowerCase());
+    });
 
     return (
         <div className="min-h-screen bg-[#01111b] p-8 text-slate-200">
@@ -48,8 +41,7 @@ export default function RecipesPage() {
                 </div>
 
                 <div className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-6 text-[#09a1c7]">Filter by category</h2>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-3">
                         <button
                             onClick={() => setActiveCategory("all")}
                             className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${activeCategory === "all"
@@ -57,7 +49,7 @@ export default function RecipesPage() {
                                 : "bg-[#052d41] text-[#6ab3c8] hover:bg-[#01628e]/50"
                                 }`}
                         >
-                            All
+                            All Recipes
                         </button>
                         <button
                             onClick={() => setActiveCategory("og-kush")}
@@ -67,15 +59,6 @@ export default function RecipesPage() {
                                 }`}
                         >
                             OG Kush
-                        </button>
-                        <button
-                            onClick={() => setActiveCategory("sour-diesel")}
-                            className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${activeCategory === "sour-diesel"
-                                ? "bg-[#01628e] text-slate-100"
-                                : "bg-[#052d41] text-[#6ab3c8] hover:bg-[#01628e]/50"
-                                }`}
-                        >
-                            Sour Diesel
                         </button>
                         <button
                             onClick={() => setActiveCategory("green-crack")}
@@ -125,13 +108,12 @@ export default function RecipesPage() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredMixes.map((mix, index) => (
                         <Card key={index} className="p-6 bg-[#052d41] border-[#0a4158] hover:shadow-md hover:shadow-[#09a1c7]/10 transition-shadow">
-                            <h3 className="text-xl font-semibold mb-3 text-slate-100">{mix.seed}</h3>
                             <div className="space-y-4">
                                 <div>
-                                    <h4 className="font-medium mb-2 text-[#09a1c7]">Ingredients:</h4>
+                                    <h3 className="text-xl font-semibold text-[#09a1c7] mb-2">{mix.seed}</h3>
                                     <div className="flex flex-wrap gap-2 mb-3">
                                         {mix.ingredients.map((ingredientName, idx) => {
                                             const ingredient = ingredients.find(i => i.name === ingredientName);

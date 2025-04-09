@@ -58,7 +58,7 @@ export default function Home() {
       try {
         setCustomMixes(JSON.parse(savedMixes));
       } catch (e) {
-        console.error("Erro ao carregar receitas salvas", e);
+        console.error("Error loading saved recipes", e);
       }
     }
   }, [mixCreated]);
@@ -78,7 +78,6 @@ export default function Home() {
   const getSelectedSeedPrice = () => {
     return seeds.find((seed) => seed.name === selectedSeed)?.basePrice || 0;
   };
-
 
   const saveCustomMix = () => {
     if (!customMixName.trim() || customEffects.length === 0 || isNaN(parseFloat(customMixPrice)) || parseFloat(customMixPrice) <= 0) {
@@ -101,11 +100,7 @@ export default function Home() {
 
     const updatedMixes = [...customMixes, newCustomMix];
     setCustomMixes(updatedMixes);
-
-    // Salvar nos cookies
     Cookies.set('customMixes', JSON.stringify(updatedMixes), { expires: 365 });
-
-    // Resetar o formulário
     setIsCreatingCustomMix(false);
     setCustomMixName("");
     setCustomMixPrice("");
@@ -153,7 +148,6 @@ export default function Home() {
     quantities[mix.ingredients[1]]
   ).length;
 
-
   const toggleEffect = (effect: Effect) => {
     if (customEffects.includes(effect)) {
       setCustomEffects(customEffects.filter((e) => e !== effect));
@@ -184,8 +178,6 @@ export default function Home() {
               <p className="text-[#6ab3c8]">Mix ingredients, create recipes, make money</p>
             </div>
           </motion.div>
-
-
         </header>
 
         <motion.div
@@ -198,26 +190,25 @@ export default function Home() {
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-[#2feaa8]" />
-                <h2 className="text-2xl font-semibold text-[#09a1c7]">Receitas</h2>
+                <h2 className="text-2xl font-semibold text-[#09a1c7]">Recipes</h2>
               </div>
-              <Link href="/receitas">
+              <Link href="/recipes">
                 <Button className="bg-gradient-to-r from-[#01628e] to-[#09a1c7] hover:from-[#015578] hover:to-[#0891b4] text-white">
-                  Ver Todas as Receitas
+                  View All Recipes
                 </Button>
               </Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               <div>
-                <h3 className="text-lg font-medium mb-3 text-[#6ab3c8]">Receitas Descobertas</h3>
+                <h3 className="text-lg font-medium mb-3 text-[#6ab3c8]">Discovered Recipes</h3>
                 <p className="text-[#6ab3c8] mb-4">
-                  Descubra as melhores combinações para criar drogas potentes e lucrativas.
+                  Discover the best combinations to create potent and profitable drugs.
                 </p>
-
               </div>
 
               <div>
-                <h3 className="text-lg font-medium mb-3 text-[#6ab3c8]">Suas Receitas Personalizadas</h3>
+                <h3 className="text-lg font-medium mb-3 text-[#6ab3c8]">Your Custom Recipes</h3>
                 {customMixes.length > 0 ? (
                   <div className="grid grid-cols-1 gap-3 max-h-[180px] overflow-y-auto pr-1">
                     {customMixes.map((mix) => (
@@ -266,7 +257,7 @@ export default function Home() {
                 ) : (
                   <div className="p-4 rounded bg-[#01111b] border border-[#0a4158] text-center">
                     <p className="text-[#6ab3c8] text-sm">
-                      Você ainda não criou nenhuma receita personalizada. Experimente novas combinações!
+                      You haven't created any custom recipes yet. Try new combinations!
                     </p>
                   </div>
                 )}
@@ -283,12 +274,12 @@ export default function Home() {
             <Card className="p-6 bg-[#052d41] border border-[#0a4158] backdrop-blur-sm">
               <div className="text-center mb-6">
                 <h2 className="text-2xl font-bold mb-2">
-                  {mixCreated ? "Receita ja existente" : "Receita nova"}
+                  {mixCreated ? "Existing Recipe" : "New Recipe"}
                 </h2>
                 {mixCreated ? (
-                  <Badge className="bg-[#2feaa8] text-[#01111b] px-3 py-1">Receita Conhecida</Badge>
+                  <Badge className="bg-[#2feaa8] text-[#01111b] px-3 py-1">Known Recipe</Badge>
                 ) : (
-                  <Badge className="bg-yellow-500/70 px-3 py-1">Receita Desconhecida</Badge>
+                  <Badge className="bg-yellow-500/70 px-3 py-1">Unknown Recipe</Badge>
                 )}
               </div>
 
@@ -311,15 +302,15 @@ export default function Home() {
                       {mixCreated.seed}
                     </h3>
                     <div className="flex justify-between text-lg">
-                      <span className="text-[#6ab3c8]">Preço de Venda:</span>
+                      <span className="text-[#6ab3c8]">Sell Price:</span>
                       <span className="text-[#2feaa8] font-bold">${mixCreated.sellPrice}</span>
                     </div>
                     <div className="flex justify-between text-lg">
-                      <span className="text-[#6ab3c8]">Custo Total:</span>
+                      <span className="text-[#6ab3c8]">Total Cost:</span>
                       <span className="text-[#09a1c7]">${finalPrice}</span>
                     </div>
                     <div className="flex justify-between text-lg">
-                      <span className="text-[#6ab3c8]">Lucro:</span>
+                      <span className="text-[#6ab3c8]">Profit:</span>
                       <span className="text-[#2feaa8] font-bold">${mixCreated.sellPrice - finalPrice}</span>
                     </div>
                   </div>
@@ -327,7 +318,7 @@ export default function Home() {
                   <div className="space-y-4">
                     <h4 className="font-medium text-[#6ab3c8] flex items-center gap-2">
                       <Flame className="w-5 h-5 text-[#2feaa8]" />
-                      Efeitos:
+                      Effects:
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {mixCreated.effects.map((effect, i) => {
@@ -348,7 +339,7 @@ export default function Home() {
 
                     <h4 className="font-medium text-[#6ab3c8] flex items-center gap-2 mt-6">
                       <Zap className="w-5 h-5 text-[#2feaa8]" />
-                      Ingredientes usados:
+                      Used Ingredients:
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {mixCreated.ingredients.map((ingredientName, idx) => {
@@ -375,26 +366,26 @@ export default function Home() {
                 <div className="text-center">
                   {isCreatingCustomMix ? (
                     <div className="max-w-md mx-auto">
-                      <h3 className="font-medium text-[#09a1c7] mb-4">Salvar Nova Receita</h3>
+                      <h3 className="font-medium text-[#09a1c7] mb-4">Save New Recipe</h3>
                       <div className="space-y-4">
                         <div>
                           <Label htmlFor="custom-mix-name" className="text-slate-200 mb-1 block text-left">
-                            Nome da Receita
+                            Recipe Name
                           </Label>
                           <Input
                             id="custom-mix-name"
                             value={customMixName}
                             onChange={(e) => setCustomMixName(e.target.value)}
-                            placeholder="Ex: Super Mix Energético"
+                            placeholder="Ex: Super Energy Mix"
                             className="bg-[#01111b] border-[#0a4158] text-slate-200"
                           />
                         </div>
                         <div>
                           <Label htmlFor="custom-mix-effects" className="text-slate-200 mb-1 block text-left">
-                            Efeitos
+                            Effects
                           </Label>
                           <div className="bg-[#01111b] border border-[#0a4158] rounded-md p-3">
-                            <div className="mb-2 text-xs text-[#6ab3c8]">Selecione os efeitos desta receita:</div>
+                            <div className="mb-2 text-xs text-[#6ab3c8]">Select the effects for this recipe:</div>
                             <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto p-1">
                               {Object.values(Effect).map((effect) => {
                                 const isSelected = customEffects.includes(effect);
@@ -416,7 +407,7 @@ export default function Home() {
                         </div>
                         <div>
                           <Label htmlFor="custom-mix-price" className="text-slate-200 mb-1 block text-left">
-                            Preço de Venda ($)
+                            Sell Price ($)
                           </Label>
                           <Input
                             id="custom-mix-price"
@@ -434,7 +425,7 @@ export default function Home() {
                             disabled={!customMixName.trim() || customEffects.length === 0 || isNaN(parseFloat(customMixPrice)) || parseFloat(customMixPrice) <= 0}
                           >
                             <Save className="w-4 h-4 mr-2" />
-                            Salvar Receita
+                            Save Recipe
                           </Button>
                         </div>
                       </div>
@@ -445,7 +436,7 @@ export default function Home() {
                         <LightbulbIcon className="w-16 h-16 text-yellow-400 animate-pulse" />
                       </div>
                       <p className="text-slate-200 mb-6">
-                        Sua mistura não resultou em nenhuma droga conhecida. salve esta receita!
+                        Your mix didn't result in any known drug. Save this recipe!
                       </p>
                       <Button
                         variant="outline"
@@ -453,7 +444,7 @@ export default function Home() {
                         onClick={() => setIsCreatingCustomMix(true)}
                       >
                         <PlusCircle className="w-4 h-4 mr-2" />
-                        Criar Nova Receita
+                        Create New Recipe
                       </Button>
                     </>
                   )}
@@ -466,13 +457,13 @@ export default function Home() {
                   className="border-[#09a1c7] text-[#6ab3c8] hover:bg-[#09a1c7]/20"
                   onClick={resetMix}
                 >
-                  Criar Nova Mistura
+                  Create New Mix
                 </Button>
                 <Button
                   className="bg-gradient-to-r from-[#01628e] to-[#09a1c7] text-white border-none"
                   onClick={() => setShowRecipeResult(false)}
                 >
-                  Ajustar Ingredientes
+                  Adjust Ingredients
                 </Button>
               </div>
             </Card>
@@ -488,16 +479,16 @@ export default function Home() {
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-semibold text-[#09a1c7] flex items-center gap-2">
                     <BeakerIcon className="w-5 h-5" />
-                    Laboratório
+                    Laboratory
                   </h2>
                   <div className="text-sm text-[#6ab3c8] flex items-center gap-1">
                     <TrendingUp className="w-4 h-4" />
-                    <span>{discoveredRecipes} receitas descobertas</span>
+                    <span>{discoveredRecipes} recipes discovered</span>
                   </div>
                 </div>
 
                 <div className="mb-6">
-                  <h3 className="text-lg font-medium mb-4 text-[#6ab3c8]">Selecione a Semente Base</h3>
+                  <h3 className="text-lg font-medium mb-4 text-[#6ab3c8]">Select Base Seed</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                     {seeds.map((seed) => (
                       <motion.div
@@ -531,8 +522,7 @@ export default function Home() {
 
                 <div className="mb-4">
                   <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-lg font-medium text-[#6ab3c8]">Adicione Ingredientes</h3>
-
+                    <h3 className="text-lg font-medium text-[#6ab3c8]">Add Ingredients</h3>
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                     {ingredients.map((ingredient) => (
@@ -604,7 +594,7 @@ export default function Home() {
               <Card className="p-5 bg-[#052d41] border-[#0a4158] h-full flex flex-col">
                 <h2 className="text-2xl font-semibold mb-6 text-[#09a1c7] flex items-center gap-2">
                   <CreditCard className="w-5 h-5" />
-                  Sumário da Mistura
+                  Mix Summary
                 </h2>
 
                 <div className="flex-grow space-y-4 mb-8">
@@ -615,26 +605,26 @@ export default function Home() {
 
                     <div className="space-y-3">
                       <div className="flex justify-between">
-                        <span className="text-[#6ab3c8]">Custo da Semente:</span>
+                        <span className="text-[#6ab3c8]">Seed Cost:</span>
                         <span className="text-slate-200">${seedPrice}</span>
                       </div>
 
                       <div className="flex justify-between">
-                        <span className="text-[#6ab3c8]">Custo dos Ingredientes:</span>
+                        <span className="text-[#6ab3c8]">Ingredients Cost:</span>
                         <span className="text-slate-200">${total}</span>
                       </div>
 
                       <div className="h-px bg-[#0a4158] my-2" />
 
                       <div className="flex justify-between font-medium">
-                        <span className="text-slate-100">Custo Total:</span>
+                        <span className="text-slate-100">Total Cost:</span>
                         <span className="text-slate-100">${finalPrice}</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="p-4 rounded-lg bg-[#01111b] border border-[#0a4158]">
-                    <h3 className="text-lg font-medium mb-3 text-[#09a1c7]">Ingredientes Selecionados</h3>
+                    <h3 className="text-lg font-medium mb-3 text-[#09a1c7]">Selected Ingredients</h3>
 
                     <div className="space-y-2">
                       {Object.entries(quantities)
@@ -660,9 +650,9 @@ export default function Home() {
                               </div>
                               <div className="flex items-center gap-4">
                                 <div className="flex flex-col items-end">
-                                  <span className="text-xs text-[#6ab3c8]">Preço unitário: ${pricePerUnit}</span>
+                                  <span className="text-xs text-[#6ab3c8]">Unit price: ${pricePerUnit}</span>
                                   <div className="flex items-center gap-1">
-                                    <span className="text-sm text-[#6ab3c8]">Quantidade:</span>
+                                    <span className="text-sm text-[#6ab3c8]">Quantity:</span>
                                     <span className="text-sm text-slate-200">x{quantity}</span>
                                   </div>
                                 </div>
@@ -675,7 +665,7 @@ export default function Home() {
                         })}
 
                       {Object.entries(quantities).filter(([_, quantity]) => quantity > 0).length === 0 && (
-                        <p className="text-[#6ab3c8] text-sm italic">Nenhum ingrediente selecionado ainda</p>
+                        <p className="text-[#6ab3c8] text-sm italic">No ingredients selected yet</p>
                       )}
                     </div>
                   </div>
@@ -687,7 +677,7 @@ export default function Home() {
                   disabled={Object.entries(quantities).filter(([_, quantity]) => quantity > 0).length === 0}
                 >
                   <BeakerIcon className="mr-2 h-5 w-5" />
-                  Criar Mistura
+                  Create Mix
                 </Button>
               </Card>
             </motion.div>

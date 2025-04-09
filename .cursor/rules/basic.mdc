@@ -1,40 +1,40 @@
 ---
-description: Regras para desenvolvimento Next.js com Tailwind e shadcn/ui
+description: Rules for Next.js development with Tailwind and shadcn/ui
 globs: "**/*.{ts,tsx,js,jsx}"
 alwaysApply: true
 ---
-# Diretrizes para Código e Design
+# Code and Design Guidelines
 
-## Componentes React e Next.js
-- Para componentes que usam hooks React (useState, useEffect, useContext, etc), sempre adicione `"use client"` no topo do arquivo.
-- Prefira Server Components para componentes que não precisam de interatividade no cliente.
-- Siga uma estrutura de pastas organizada: páginas em `app/`, componentes reutilizáveis em `components/`, hooks personalizados em `hooks/` e utilitários em `lib/`.
-- Utilize o padrão de composição de componentes para maior reutilização.
+## React and Next.js Components
+- For components that use React hooks (useState, useEffect, useContext, etc), always add `"use client"` at the top of the file.
+- Prefer Server Components for components that don't need client interactivity.
+- Follow an organized folder structure: pages in `app/`, reusable components in `components/`, custom hooks in `hooks/`, and utilities in `lib/`.
+- Use component composition pattern for better reusability.
 
-## UI/UX e Design
-- Crie interfaces elegantes, modernas e responsivas - não genéricas ou básicas.
-- Mantenha consistência em toda a UI com espaçamento, tipografia e paleta de cores uniforme.
-- Aplique princípios de acessibilidade: contraste adequado, textos alternativos para imagens, e navegação por teclado.
-- Use componentes do shadcn/ui para uma experiência coesa e de alta qualidade.
-- Implemente animações sutis para melhorar a experiência do usuário.
+## UI/UX and Design
+- Create elegant, modern, and responsive interfaces - not generic or basic.
+- Maintain consistency throughout the UI with uniform spacing, typography, and color palette.
+- Apply accessibility principles: adequate contrast, alternative texts for images, and keyboard navigation.
+- Use shadcn/ui components for a cohesive and high-quality experience.
+- Implement subtle animations to enhance user experience.
 
-## Recursos e Bibliotecas
-- Use exclusivamente ícones de `lucide-react`.
-- Para imagens, utilize Unsplash com URLs que você sabe que existem.
-- Não instale bibliotecas adicionais para UI, ícones, ou temas sem necessidade explícita.
-- Utilize tailwindcss para estilização, seguindo as classes utilitárias recomendadas.
+## Resources and Libraries
+- Use exclusively icons from `lucide-react`.
+- For images, use Unsplash with URLs that you know exist.
+- Don't install additional libraries for UI, icons, or themes without explicit need.
+- Use tailwindcss for styling, following the recommended utility classes.
 
-## Boas Práticas
-- Evite código que gere o erro: "Warning: Extra attributes from the server: %s%s""class,style".
-- Use TypeScript corretamente com tipagem adequada.
-- Implemente tratamento de erros e estados de carregamento.
-- Faça otimização de performance com memoização (useMemo, useCallback) quando apropriado.
-- Priorize SEO com metadados adequados nas páginas.
+## Best Practices
+- Avoid code that generates the error: "Warning: Extra attributes from the server: %s%s""class,style".
+- Use TypeScript correctly with proper typing.
+- Implement error handling and loading states.
+- Optimize performance with memoization (useMemo, useCallback) when appropriate.
+- Prioritize SEO with proper metadata on pages.
 
-## Responsividade
-- Desenvolva primeiro para dispositivos móveis (mobile-first).
-- Use as classes de breakpoint do Tailwind (sm, md, lg, xl, 2xl) para criar layouts responsivos.
-- Teste em múltiplos tamanhos de tela antes de finalizar o design.
+## Responsiveness
+- Develop mobile-first.
+- Use Tailwind breakpoint classes (sm, md, lg, xl, 2xl) to create responsive layouts.
+- Test on multiple screen sizes before finalizing the design.
 
 For all designs I ask you to make, have them be beautiful, not cookie cutter. Make webpages that are fully featured and worthy for production.
 
