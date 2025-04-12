@@ -465,6 +465,11 @@ export default function Home() {
                 >
                   Adjust Ingredients
                 </Button>
+                <Link href="/reverse">
+                  <Button className="bg-gradient-to-r from-[#ff5722] to-[#ff9800] text-white border-none">
+                    Go to Reverse Engineering
+                  </Button>
+                </Link>
               </div>
             </Card>
           </motion.div>
