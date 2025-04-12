@@ -197,6 +197,11 @@ export default function Home() {
                   View All Recipes
                 </Button>
               </Link>
+              <Link href="/reverse">
+                <Button className="bg-gradient-to-r from-[#ff5722] to-[#ff9800] text-white border-none">
+                  Go to Reverse Engineering
+                </Button>
+              </Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -465,11 +470,6 @@ export default function Home() {
                 >
                   Adjust Ingredients
                 </Button>
-                <Link href="/reverse">
-                  <Button className="bg-gradient-to-r from-[#ff5722] to-[#ff9800] text-white border-none">
-                    Go to Reverse Engineering
-                  </Button>
-                </Link>
               </div>
             </Card>
           </motion.div>
