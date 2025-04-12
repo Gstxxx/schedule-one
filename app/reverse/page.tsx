@@ -160,45 +160,44 @@ const ReverseEngineeringPage = () => {
 
                             <div>
                                 <h3 className="text-lg font-medium mb-2 text-[#6ab3c8]">Optimization</h3>
-                                <Select
-                                    value={optimizeFor}
-                                    onValueChange={(value: "cost" | "profit") => setOptimizeFor(value)}
-                                >
-                                    <SelectTrigger className="bg-[#01111b] border-[#0a4158] text-[#6ab3c8]">
-                                        <SelectValue>
-                                            {optimizeFor === "cost" ? "Cost (Cheapest Recipe)" : "Profit (Most Profitable)"}
-                                        </SelectValue>
-                                    </SelectTrigger>
-                                    <SelectContent className="bg-[#052d41] border-[#0a4158]">
-                                        <SelectItem value="cost" className="text-[#6ab3c8] hover:bg-[#01628e]/50">
-                                            Cost (Cheapest Recipe)
-                                        </SelectItem>
-                                        <SelectItem value="profit" className="text-[#6ab3c8] hover:bg-[#01628e]/50">
-                                            Profit (Most Profitable)
-                                        </SelectItem>
-                                    </SelectContent>
-                                </Select>
+                                <div className="flex flex-wrap gap-2">
+                                    <button
+                                        onClick={() => setOptimizeFor("cost")}
+                                        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${optimizeFor === "cost"
+                                            ? "bg-[#01628e] text-slate-100"
+                                            : "bg-[#052d41] text-[#6ab3c8] hover:bg-[#01628e]/50"
+                                            }`}
+                                    >
+                                        Cost (Cheapest Recipe)
+                                    </button>
+                                    <button
+                                        onClick={() => setOptimizeFor("profit")}
+                                        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${optimizeFor === "profit"
+                                            ? "bg-[#01628e] text-slate-100"
+                                            : "bg-[#052d41] text-[#6ab3c8] hover:bg-[#01628e]/50"
+                                            }`}
+                                    >
+                                        Profit (Most Profitable)
+                                    </button>
+                                </div>
                             </div>
 
                             <div>
                                 <h3 className="text-lg font-medium mb-2 text-[#6ab3c8]">Base Product</h3>
-                                <Select
-                                    value={baseProduct}
-                                    onValueChange={(value) => setBaseProduct(value as BaseProduct)}
-                                >
-                                    <SelectTrigger className="bg-[#01111b] border-[#0a4158] text-[#6ab3c8]">
-                                        <SelectValue>
-                                            {baseProduct} (${BASE_PRICES[baseProduct]})
-                                        </SelectValue>
-                                    </SelectTrigger>
-                                    <SelectContent className="bg-[#052d41] border-[#0a4158]">
-                                        {Object.entries(BASE_PRICES).map(([product, price]) => (
-                                            <SelectItem key={product} value={product} className="text-[#6ab3c8] hover:bg-[#01628e]/50">
-                                                {product} (${price})
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
+                                <div className="flex flex-wrap gap-2">
+                                    {Object.entries(BASE_PRICES).map(([product, price]) => (
+                                        <button
+                                            key={product}
+                                            onClick={() => setBaseProduct(product as BaseProduct)}
+                                            className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${baseProduct === product
+                                                ? "bg-[#01628e] text-slate-100"
+                                                : "bg-[#052d41] text-[#6ab3c8] hover:bg-[#01628e]/50"
+                                                }`}
+                                        >
+                                            {product} (${price})
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
 
                             <div>
